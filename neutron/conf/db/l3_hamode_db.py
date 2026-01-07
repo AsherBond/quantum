@@ -32,7 +32,7 @@ L3_HA_OPTS = [
     cfg.StrOpt('l3_ha_network_type', default='',
                help=_("The network type to use when creating the L3 HA "
                       "network for an HA router. By default, or if empty, the "
-                      "first 'tenant_network_types' value is used. This is "
+                      "first 'project_network_types' value is used. This is "
                       "helpful when the VRRP traffic should use a specific "
                       "network which is not the default one.")),
     cfg.StrOpt('l3_ha_network_physical_name', default='',

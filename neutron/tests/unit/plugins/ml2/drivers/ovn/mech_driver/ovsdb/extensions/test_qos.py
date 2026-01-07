@@ -86,14 +86,14 @@ class TestOVNClientQosExtension(test_plugin.Ml2PluginV2TestCase):
         common_config.register_common_config_options()
         ovn_conf.register_opts()
         driver_type.register_ml2_drivers_geneve_opts()
-        self.tenant_type = constants.TYPE_GENEVE
+        self.project_type = constants.TYPE_GENEVE
         cfg.CONF.set_override('extension_drivers', self._extension_drivers,
                               group='ml2')
         cfg.CONF.set_override('enable_distributed_floating_ip', 'False',
                               group='ovn')
         cfg.CONF.set_override('external_network_type', 'vlan',
                               group='ml2')
-        cfg.CONF.set_override('tenant_network_types', [self.tenant_type],
+        cfg.CONF.set_override('project_network_types', [self.project_type],
                               group='ml2')
         cfg.CONF.set_override('vni_ranges', ['1:200'], group='ml2_type_geneve')
         cfg.CONF.set_override('max_header_size', 38, group='ml2_type_geneve')
@@ -451,7 +451,7 @@ class TestOVNClientQosExtension(test_plugin.Ml2PluginV2TestCase):
                 self.context, mock.ANY, self.networks[0], original_network)
             self.assertEqual(reference_ports, reviewed_port_ids)
             calls = [mock.call(mock.ANY, mock.ANY, self.ports[0].id,
-                               self.ports[0].network_id, self.tenant_type,
+                               self.ports[0].network_id, self.project_type,
                                qos_policy_id, None)]
             self.mock_rules.assert_has_calls(calls)
             self.mock_rules.reset_mock()
@@ -528,7 +528,7 @@ class TestOVNClientQosExtension(test_plugin.Ml2PluginV2TestCase):
                 reset=True)
             self.assertEqual(reference_ports, reviewed_port_ids)
             calls = [mock.call(mock.ANY, mock.ANY, self.ports[0].id,
-                               self.ports[0].network_id, self.tenant_type,
+                               self.ports[0].network_id, self.project_type,
                                qos_policy_id, None)]
             self.mock_rules.assert_has_calls(calls)
             self.mock_rules.reset_mock()
@@ -561,7 +561,7 @@ class TestOVNClientQosExtension(test_plugin.Ml2PluginV2TestCase):
                 self.assertEqual(reference_ports, reviewed_port_ids)
                 calls = [mock.call(
                     mock.ANY, mock.ANY, self.ports[0].id,
-                    self.ports[0].network_id, self.tenant_type, qos_policy_id,
+                    self.ports[0].network_id, self.project_type, qos_policy_id,
                     None)]
                 self.mock_rules.assert_has_calls(calls)
                 self.mock_rules.reset_mock()
@@ -614,12 +614,12 @@ class TestOVNClientQosExtension(test_plugin.Ml2PluginV2TestCase):
         # Ports updated from "update_port": self.ports[1], self.ports[4]
         updated_ports = [self.ports[1], self.ports[4]]
         calls = [mock.call(mock.ANY, self.txn, port.id,
-                           port.network_id, self.tenant_type,
+                           port.network_id, self.project_type,
                            self.qos_policies[0].id, mock_qos_rules, lsp=None)
                  for port in updated_ports]
         # Port updated from "update_network": self.ports[3]
         calls.append(mock.call(mock.ANY, self.txn, self.ports[3].id,
-                               self.ports[3].network_id, self.tenant_type,
+                               self.ports[3].network_id, self.project_type,
                                self.qos_policies[0].id, mock_qos_rules))
 
         # We can't ensure the call order because we are not enforcing any order

@@ -60,7 +60,7 @@ class LocalTypeTest(base.BaseTestCase):
         observed = self.driver.reserve_provider_segment(self.context, segment)
         self.driver.release_segment(self.context, observed)
 
-    def test_allocate_tenant_segment(self):
+    def test_allocate_project_segment(self):
         expected = {api.NETWORK_TYPE: p_const.TYPE_LOCAL}
         observed = self.driver.allocate_tenant_segment(self.context)
         self.assertEqual(expected, observed)

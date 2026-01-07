@@ -1274,7 +1274,7 @@ class ValidatePortForwardingConfigurationTestCase(base.BaseTestCase):
         cfg.CONF.set_override(
             'enable_distributed_floating_ip', False, group='ovn')
         cfg.CONF.set_override('service_plugins', 'some_plugin,port_forwarding')
-        cfg.CONF.set_override('tenant_network_types', 'geneve,vlan',
+        cfg.CONF.set_override('project_network_types', 'geneve,vlan',
                               group='ml2')
         utils.validate_port_forwarding_configuration()
 
@@ -1282,7 +1282,7 @@ class ValidatePortForwardingConfigurationTestCase(base.BaseTestCase):
         cfg.CONF.set_override(
             'enable_distributed_floating_ip', True, group='ovn')
         cfg.CONF.set_override('service_plugins', 'some_plugin')
-        cfg.CONF.set_override('tenant_network_types', 'geneve,vlan',
+        cfg.CONF.set_override('project_network_types', 'geneve,vlan',
                               group='ml2')
         utils.validate_port_forwarding_configuration()
 
@@ -1290,7 +1290,7 @@ class ValidatePortForwardingConfigurationTestCase(base.BaseTestCase):
         cfg.CONF.set_override(
             'enable_distributed_floating_ip', True, group='ovn')
         cfg.CONF.set_override('service_plugins', 'some_plugin,port_forwarding')
-        cfg.CONF.set_override('tenant_network_types', 'geneve,vxlan',
+        cfg.CONF.set_override('project_network_types', 'geneve,vxlan',
                               group='ml2')
         utils.validate_port_forwarding_configuration()
 
@@ -1298,7 +1298,7 @@ class ValidatePortForwardingConfigurationTestCase(base.BaseTestCase):
         cfg.CONF.set_override(
             'enable_distributed_floating_ip', True, group='ovn')
         cfg.CONF.set_override('service_plugins', 'some_plugin,port_forwarding')
-        cfg.CONF.set_override('tenant_network_types', 'geneve,vlan',
+        cfg.CONF.set_override('project_network_types', 'geneve,vlan',
                               group='ml2')
         self.assertRaises(
             ovn_exc.InvalidPortForwardingConfiguration,

@@ -251,7 +251,7 @@ Configure Nodes (VLAN Configuration)
    .. code-block:: ini
 
       [ml2]
-      tenant_network_types = vlan
+      project_network_types = vlan
       type_drivers = vlan
       mechanism_drivers = openvswitch
 
@@ -295,7 +295,7 @@ Configure Nodes (VXLAN Configuration)
    .. code-block:: ini
 
       [ml2]
-      tenant_network_types = vxlan
+      project_network_types = vxlan
       type_drivers = vxlan
       mechanism_drivers = openvswitch
 

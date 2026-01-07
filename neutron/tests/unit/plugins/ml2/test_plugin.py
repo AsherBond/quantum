@@ -703,7 +703,7 @@ class TestExternalNetwork(Ml2PluginV2TestCase):
 
         network = self._create_external_network()
         # For external network, expected network type to be
-        # tenant_network_types which is by default 'local'.
+        # project_network_types which is by default 'local'.
         self.assertEqual(constants.TYPE_LOCAL,
                          network['network'][pnet.NETWORK_TYPE])
         # No physical network specified, expected 'None'.

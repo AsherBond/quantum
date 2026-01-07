@@ -27,9 +27,10 @@ ml2_opts = [
                          constants.TYPE_VXLAN, constants.TYPE_GENEVE],
                 help=_("List of network type driver entrypoints to be loaded "
                        "from the neutron.ml2.type_drivers namespace.")),
-    cfg.ListOpt('tenant_network_types',
+    cfg.ListOpt('project_network_types',
+                deprecated_name='tenant_network_types',
                 default=[constants.TYPE_LOCAL],
-                help=_("Ordered list of network_types to allocate as tenant "
+                help=_("Ordered list of network_types to allocate as project "
                        "networks. The default value 'local' is useful for "
                        "single-box testing but provides no connectivity "
                        "between hosts.")),
@@ -63,7 +64,7 @@ ml2_opts = [
                       "provider attributes are specified. By default it is "
                       "None, which means that if provider attributes are not "
                       "specified while creating external networks then they "
-                      "will have the same type as tenant networks. Allowed "
+                      "will have the same type as project networks. Allowed "
                       "values for external_network_type config option depend "
                       "on the network type values configured in type_drivers "
                       "config option.")),

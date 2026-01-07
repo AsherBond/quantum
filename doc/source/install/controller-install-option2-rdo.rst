@@ -169,7 +169,7 @@ and switching) virtual networking infrastructure for instances.
 
        [ml2]
        # ...
-       tenant_network_types = vxlan
+       project_network_types = vxlan
 
     .. end
 

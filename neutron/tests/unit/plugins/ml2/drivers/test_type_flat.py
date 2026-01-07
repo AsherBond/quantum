@@ -121,7 +121,7 @@ class FlatTypeTest(testlib_api.SqlTestCase):
                           self.driver.reserve_provider_segment,
                           self.context, segment)
 
-    def test_allocate_tenant_segment(self):
+    def test_allocate_project_segment(self):
         self.assertIsNone(self.driver.allocate_tenant_segment(self.context))
 
     def test_get_mtu(self):

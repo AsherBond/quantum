@@ -29,10 +29,10 @@ AGENTS_SCHEDULER_OPTS = [
                        'agents.')),
     cfg.IntOpt('dhcp_agents_per_network', default=1,
                min=1,
-               help=_('Number of DHCP agents scheduled to host a tenant '
+               help=_('Number of DHCP agents scheduled to host a project '
                       'network. If this number is greater than 1, the '
                       'scheduler automatically assigns multiple DHCP agents '
-                      'for a given tenant network, providing high '
+                      'for a given project network, providing high '
                       'availability for the DHCP service. However this does '
                       'not provide high availability for the IPv6 metadata '
                       'service in isolated networks.')),

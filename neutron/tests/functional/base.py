@@ -160,7 +160,7 @@ class TestOVNFunctionalBase(testlib_api.MySQLTestCaseMixin,
         ml2_config.cfg.CONF.set_override('extension_drivers',
                                          self._extension_drivers,
                                          group='ml2')
-        ml2_config.cfg.CONF.set_override('tenant_network_types',
+        ml2_config.cfg.CONF.set_override('project_network_types',
                                          ['geneve'],
                                          group='ml2')
         ml2_config.cfg.CONF.set_override('vni_ranges',

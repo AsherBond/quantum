@@ -155,7 +155,7 @@ information.
    ``/etc/neutron/plugins/ml2/ml2_conf.ini`` file:
 
    * Configure the OVN mechanism driver, network type drivers, self-service
-     (tenant) network types, and enable the port security extension.
+     (project) network types, and enable the port security extension.
 
      .. code-block:: ini
 
@@ -163,7 +163,7 @@ information.
         ...
         mechanism_drivers = ovn
         type_drivers = local,flat,vlan,geneve
-        tenant_network_types = geneve
+        project_network_types = geneve
         extension_drivers = port_security
         overlay_ip_version = 4
 
@@ -171,7 +171,7 @@ information.
 
         To enable VLAN self-service networks, make sure that OVN
         version 2.11 (or higher) is used, then add ``vlan`` to the
-        ``tenant_network_types`` option. The first network type in the
+        ``project_network_types`` option. The first network type in the
         list becomes the default self-service network type.
 
         To use IPv6 for all overlay (tunnel) network endpoints,

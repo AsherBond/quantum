@@ -25,8 +25,8 @@ DVR_MAC_ADDRESS_OPTS = [
                       "also be used. The others will be randomly generated. "
                       "The 'dvr_base_mac' *must* be different from "
                       "'base_mac' to avoid mixing it up with MAC's "
-                      "allocated for tenant ports. A 4-octet example would be "
-                      "dvr_base_mac = fa:16:3f:4f:00:00. The default is 3 "
+                      "allocated for project ports. A 4-octet example would "
+                      "be dvr_base_mac = fa:16:3f:4f:00:00. The default is 3 "
                       "octets")),
 ]
 
