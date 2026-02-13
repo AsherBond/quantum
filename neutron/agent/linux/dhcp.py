@@ -1781,9 +1781,13 @@ class DeviceManager:
 
             host_id = port.get(portbindings.HOST_ID)
             if host_id and host_id != self.conf.host:
-                LOG.warning(f"Found stale port {port.id} for network "
-                            f"{network.id} bound to {host_id} that is "
-                            f"not us {self.conf.host}, deleting")
+                LOG.warning("Found stale port %(port)s for network "
+                            "%(network)s bound to %(host_id)s that is "
+                            "not us %(host)s, deleting",
+                            {'port': port.id,
+                             'network': network.id,
+                             'hostid': host_id,
+                             'host': self.conf.host})
                 try:
                     self.unplug(dev_name, network)
                 except Exception:

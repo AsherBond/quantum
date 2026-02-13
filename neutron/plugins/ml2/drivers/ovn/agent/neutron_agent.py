@@ -312,8 +312,12 @@ class AgentCache:
             else:
                 agent_list.append(agent)
         for field, (field_type, value) in type_errors.items():
-            LOG.info(f'Value "{value}" {type(value)} does not '
-                     f'match the OVN related agent field "{field}" '
-                     f'with type {field_type}')
+            LOG.info('Value "%(value)s" %(vtype)s does not '
+                     'match the OVN related agent field "%(field)s" '
+                     'with type %(ftype)s',
+                     {'value': value,
+                      'vtype': type(value),
+                      'field': field,
+                      'ftype': field_type})
 
         return agent_list

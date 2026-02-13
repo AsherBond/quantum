@@ -536,12 +536,12 @@ class TestHAL3Agent(TestL3Agent):
 
         # Ensure connectivity is restored
         vm.block_until_ping(external.ip)
-        LOG.debug(f'Connectivity restored after {datetime.now() - start}')
+        LOG.debug('Connectivity restored after %s', datetime.now() - start)
 
         # Ensure connection tracking states are synced to now active router
         netcat_tcp.test_connectivity()
         netcat_udp.test_connectivity()
-        LOG.debug(f'Connections restored after {datetime.now() - start}')
+        LOG.debug('Connections restored after %s', datetime.now() - start)
 
         # Assert the backup host got active
         timeout = self.environment.env_desc.agent_down_time * 1.2
@@ -549,7 +549,7 @@ class TestHAL3Agent(TestL3Agent):
             lambda: backup_host in get_active_hosts(),
             timeout=timeout,
         )
-        LOG.debug(f'Active host asserted after {datetime.now() - start}')
+        LOG.debug('Active host asserted after %s', datetime.now() - start)
 
         if method in ('kill', 'shutdown'):
             # Assert the previously active host is no longer active if it was
@@ -559,7 +559,8 @@ class TestHAL3Agent(TestL3Agent):
                 lambda: active_host not in get_active_hosts(),
                 timeout=timeout,
             )
-            LOG.debug(f'Inactive host asserted after {datetime.now() - start}')
+            LOG.debug('Inactive host asserted after %s',
+                      datetime.now() - start)
 
         # Stop probing processes
         pinger.stop()

@@ -117,7 +117,7 @@ class FdbPopulationAgentExtension(
         """Perform FDB Agent Extension initialization."""
         if driver_type != ovs_constants.EXTENSION_DRIVER_TYPE:
             LOG.error('FDB extension is only supported for OVS agent, '
-                      f'currently uses {driver_type}')
+                      'currently uses %s', driver_type)
             sys.exit(1)
 
         self.device_mappings = helpers.parse_mappings(

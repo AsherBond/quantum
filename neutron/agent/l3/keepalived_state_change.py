@@ -188,7 +188,7 @@ class MonitorDaemon(daemon.Daemon):
         elif state == 'backup':
             self.sync_conntrack_backup()
         else:
-            LOG.error(f'Unknown state "{state}".')
+            LOG.error('Unknown state "%s".', state)
 
     def sync_conntrack_primary(self):
 

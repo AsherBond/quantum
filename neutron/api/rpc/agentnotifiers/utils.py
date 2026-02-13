@@ -81,8 +81,8 @@ class RPCNotifierHandler:
 
         _method = getattr(self.notifier_instance, method_name, None)
         if not _method:
-            LOG.warning(f'Method {method_name} is not implemented in the RPC '
-                        'notifier.')
+            LOG.warning('Method %s is not implemented in the RPC notifier.',
+                        method_name)
             return null_method
 
         return _method
