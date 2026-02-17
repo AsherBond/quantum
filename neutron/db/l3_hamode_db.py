@@ -183,10 +183,10 @@ class L3_HA_NAT_db_mixin(l3_dvr_db.L3_NAT_with_dvr_db_mixin,
         l3_hamode.L3HARouterVRIdAllocation.delete_objects(
             context, network_id=ha_network.network_id, vr_id=vr_id)
 
-    def _create_ha_subnet(self, context, network_id, tenant_id):
+    def _create_ha_subnet(self, context, network_id, project_id):
         args = {'network_id': network_id,
-                'tenant_id': '',
-                'name': constants.HA_SUBNET_NAME % tenant_id,
+                'project_id': '',
+                'name': constants.HA_SUBNET_NAME % project_id,
                 'ip_version': 4,
                 'cidr': cfg.CONF.l3_ha_net_cidr,
                 'enable_dhcp': False,

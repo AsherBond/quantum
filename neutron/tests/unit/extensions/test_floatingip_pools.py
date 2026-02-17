@@ -80,7 +80,6 @@ class FloatingIPPoolsDBTestCaseBase(test_l3.L3NatTestCaseMixin):
                                 network_id=fake_network_id,
                                 cidr=fake_cidr,
                                 ip_version=ip_version,
-                                tenant_id='fake_project',
                                 project_id='fake_project')
         fake_subnet.name = 'fake_subnet'
         self.plugin._is_v6_supported = is_v6_supported

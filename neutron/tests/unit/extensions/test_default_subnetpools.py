@@ -62,7 +62,7 @@ class DefaultSubnetpoolsExtensionTestCase(
         data = {'subnet': {
                     'network_id': network_id,
                     'ip_version': str(ip_version),
-                    'tenant_id': project_id,
+                    'project_id': project_id,
                     'use_default_subnetpool': True}}
         data['subnet'].update(kwargs)
         subnet_req = self.new_create_request('subnets', data)
@@ -163,7 +163,7 @@ class DefaultSubnetpoolsExtensionTestCase(
         with self.network() as network:
             data = {'subnet': {'network_id': network['network']['id'],
                     'ip_version': constants.IP_VERSION_6,
-                               'tenant_id': network['network']['project_id'],
+                               'project_id': network['network']['project_id'],
                                'use_default_subnetpool': True}}
             if ra_addr_mode:
                 data['subnet']['ipv6_ra_mode'] = ra_addr_mode

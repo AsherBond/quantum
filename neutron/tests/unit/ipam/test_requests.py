@@ -333,7 +333,7 @@ class TestSubnetRequestFactory(IpamSubnetRequestTestCase):
         subnet = {'cidr': cidr,
                   'prefixlen': prefixlen,
                   'ip_version': ip_version,
-                  'tenant_id': self.project_id,
+                  'project_id': self.project_id,
                   'gateway_ip': gateway_ip,
                   'allocation_pools': None,
                   'id': id or self.subnet_id}

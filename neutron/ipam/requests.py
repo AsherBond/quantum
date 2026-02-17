@@ -15,6 +15,7 @@ import abc
 import netaddr
 from neutron_lib.api import validators
 from neutron_lib import constants
+from oslo_log import log as logging
 from oslo_utils import netutils
 from oslo_utils import uuidutils
 
@@ -22,6 +23,9 @@ from neutron._i18n import _
 from neutron.common import utils as common_utils
 from neutron.ipam import exceptions as ipam_exc
 from neutron.ipam import utils as ipam_utils
+
+
+LOG = logging.getLogger(__name__)
 
 
 class SubnetPool(metaclass=abc.ABCMeta):
@@ -350,7 +354,7 @@ class SubnetRequestFactory:
                 prefixlen = int(subnetpool['default_prefixlen'])
 
             return AnySubnetRequest(
-                subnet['tenant_id'],
+                subnet['project_id'],
                 subnet_id,
                 common_utils.ip_version_from_int(subnetpool['ip_version']),
                 prefixlen,
@@ -367,8 +371,13 @@ class SubnetRequestFactory:
                 '{}/{}'.format(gateway_ip, prefixlen))
             cidr = gw_ip_net.cidr
 
-        # TODO(ralonsoh): "tenant_id" reference should be removed.
-        project_id = subnet.get('project_id') or subnet['tenant_id']
+        # TODO(ralonsoh): migrate "tenant_id" to "project_id", remove in G+2
+        if subnet.get('tenant_id') and subnet.get('project_id') is None:
+            subnet['project_id'] = subnet['tenant_id']
+            LOG.warning('project_id key not found in subnet dictionary, using '
+                        'tenant_id instead. This support has been deprecated '
+                        'and will be removed in a future release.')
+        project_id = subnet['project_id']
         return SpecificSubnetRequest(project_id,
                                      subnet_id,
                                      cidr,

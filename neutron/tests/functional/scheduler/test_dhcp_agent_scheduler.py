@@ -597,7 +597,7 @@ class TestDHCPSchedulerWithNetworkAccessibility(
                  'allocation_pools': constants.ATTR_NOT_SPECIFIED,
                  'dns_nameservers': constants.ATTR_NOT_SPECIFIED,
                  'host_routes': constants.ATTR_NOT_SPECIFIED,
-                 'tenant_id': 'project_one',
+                 'project_id': 'project_one',
                  'enable_dhcp': True}})
 
         self.plugin.schedule_network(admin_context, net)

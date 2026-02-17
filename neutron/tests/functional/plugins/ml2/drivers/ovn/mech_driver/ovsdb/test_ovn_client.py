@@ -65,7 +65,7 @@ class TestOVNClient(base.TestOVNFunctionalBase,
                             'status': constants.NET_STATUS_ACTIVE}
             network = self.plugin.create_network(self.context,
                                                  {'network': network_args})
-            subnet_args = {'tenant_id': 'project_1',
+            subnet_args = {'project_id': 'project_1',
                            'name': 'test_snet_1',
                            'network_id': network['id'],
                            'ip_version': constants.IP_VERSION_4,

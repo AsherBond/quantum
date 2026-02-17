@@ -43,7 +43,7 @@ class TestL3RpcCallback(testlib_api.SqlTestCase):
 
     def _prepare_ipv6_pd_subnet(self):
         subnet = {'subnet': {'network_id': self.network['id'],
-                             'tenant_id': 'project_id',
+                             'project_id': 'project_id',
                              'cidr': None,
                              'ip_version': constants.IP_VERSION_6,
                              'use_default_subnetpool': True,

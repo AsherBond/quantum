@@ -216,7 +216,7 @@ class SubnetDbObjectTestCase(obj_test_base.BaseDbObjectTestCase,
 
         self.assertEqual(obj, result[0])
 
-    def test_get_shared_subnet_with_another_tenant(self):
+    def test_get_shared_subnet_with_another_project(self):
         network_shared = self._create_test_network()
         self._create_shared_network_rbac_entry(network_shared)
 
@@ -236,7 +236,7 @@ class SubnetDbObjectTestCase(obj_test_base.BaseDbObjectTestCase,
         all_subnets = self._test_class.get_objects(self.context)
         self.assertEqual(2, len(all_subnets))
 
-        # access with new tenant_id, should be able to access to one subnet
+        # access with new project_id, should be able to access to one subnet
         new_ctx = context.Context('', uuidutils.generate_uuid())
         public_subnets = self._test_class.get_objects(new_ctx)
         self.assertEqual([shared_subnet], public_subnets)

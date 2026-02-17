@@ -1023,7 +1023,7 @@ class L3HAModeDbTestCase(L3HATestFramework):
                              'allocation_pools': constants.ATTR_NOT_SPECIFIED,
                              'dns_nameservers': constants.ATTR_NOT_SPECIFIED,
                              'host_routes': constants.ATTR_NOT_SPECIFIED,
-                             'tenant_id': project_id,
+                             'project_id': project_id,
                              'enable_dhcp': True,
                              'ipv6_ra_mode': constants.ATTR_NOT_SPECIFIED}}
         created_subnet = plugin.create_subnet(ctx, subnet)

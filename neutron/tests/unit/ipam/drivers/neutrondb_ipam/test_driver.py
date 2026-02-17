@@ -59,7 +59,7 @@ class TestNeutronDbIpamMixin:
                              'ipv6_address_mode': v6_address_mode,
                              'ipv6_ra_mode': constants.ATTR_NOT_SPECIFIED,
                              'network_id': network_id,
-                             'tenant_id': self._project_id}}
+                             'project_id': self._project_id}}
         return plugin.create_subnet(ctx, subnet)
 
 
