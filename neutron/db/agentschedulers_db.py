@@ -100,9 +100,9 @@ class AgentSchedulerDbMixin(agents_db.AgentDbMixin):
         # add random initial delay to allow agents to check in after the
         # neutron server first starts. random to offset multiple servers
         initial_delay = secrets.SystemRandom().randint(interval, interval * 2)
-
+        desc = 'Periodic worker for "AgentSchedulerDbMixin"'
         check_worker = neutron_worker.PeriodicWorker(function, interval,
-                                                     initial_delay)
+                                                     initial_delay, desc=desc)
         self.add_worker(check_worker)
 
     def agent_dead_limit_seconds(self):
