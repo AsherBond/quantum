@@ -101,4 +101,6 @@ class DbQuotaNoLockDriver(quota_driver.DbQuotaDriver):
     def get_workers():
         interval = quota_api.RESERVATION_EXPIRATION_TIMEOUT
         method = DbQuotaNoLockDriver._remove_expired_reservations
-        return [neutron_worker.PeriodicWorker(method, interval, interval)]
+        desc = 'Periodic worker for "DbQuotaNoLockDriver"'
+        return [neutron_worker.PeriodicWorker(method, interval, interval,
+                                              desc=desc)]

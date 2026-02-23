@@ -174,8 +174,9 @@ class L3_NAT_dbonly_mixin(l3.RouterPluginBase,
         interval = 60 * 5  # only every 5 minutes. cleanups should be rare
         initial_delay = secrets.SystemRandom().randint(
             0, interval)  # splay multiple servers
+        desc = 'Periodic worker for "L3_NAT_dbonly_mixin"'
         janitor = neutron_worker.PeriodicWorker(self._clean_garbage, interval,
-                                                initial_delay)
+                                                initial_delay, desc=desc)
         self.add_worker(janitor)
 
     def _clean_garbage(self):
