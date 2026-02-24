@@ -592,7 +592,7 @@ class L3DVRSchedulerBaseTest(L3SchedulerBaseTest):
         return network
 
     def _create_subnet(self, sub_id, network_id, cidr, gw_ip, name='test_sub'):
-        subnet = {'tenant_id': self.adminContext.project_id,
+        subnet = {'project_id': self.adminContext.project_id,
                   'id': sub_id,
                   'name': name,
                   'network_id': network_id,

@@ -83,7 +83,7 @@ class IpamTestCase(testlib_api.SqlTestCase, testlib_api.MySQLTestCaseMixin):
         return self.plugin.create_network(self.cxt, {'network': network})
 
     def _create_subnet(self):
-        subnet = {'tenant_id': self.project_id,
+        subnet = {'project_id': self.project_id,
                   'id': self.subnet_id,
                   'name': 'test_sub',
                   'network_id': self.network_id,

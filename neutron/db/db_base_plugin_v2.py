@@ -352,7 +352,7 @@ class NeutronDbPluginV2(db_base_plugin_common.DbBasePluginCommon,
             constants.DEVICE_OWNER_NETWORK_PREFIX)))
         subnets = subnet_obj.Subnet.get_objects(context, network_id=id)
         project_ids = set([port['project_id'] for port in ports] +
-                          [subnet['tenant_id'] for subnet in subnets])
+                          [subnet['project_id'] for subnet in subnets])
         # raise if multiple projects found or if the only project found
         # is not the owner of the network
         if (len(project_ids) > 1 or len(project_ids) == 1 and
@@ -1025,7 +1025,6 @@ class NeutronDbPluginV2(db_base_plugin_common.DbBasePluginCommon,
         s['cidr'] = subnet_obj.cidr
         s['id'] = subnet_obj.id
         s['project_id'] = subnet_obj.project_id
-        s['tenant_id'] = subnet_obj.project_id
         s['subnetpool_id'] = subnet_obj.subnetpool_id
         # Fill 'network_id' field with the current value since this is expected
         # by _validate_segment() in ipam_pluggable_backend.

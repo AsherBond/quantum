@@ -148,9 +148,15 @@ class DbBasePluginCommon:
         else:
             standard_attr_id = subnet.standard_attr_id
 
+        # TODO(haleyb): migrate "tenant_id" to "project_id", remove in G+2
+        if subnet.get('tenant_id') and subnet.get('project_id') is None:
+            subnet['project_id'] = subnet['tenant_id']
+            LOG.warning('project_id key not found in subnet dictionary, using '
+                        'tenant_id instead. This support has been deprecated '
+                        'and will be removed in a future release.')
         res = {'id': subnet['id'],
                'name': subnet['name'],
-               'tenant_id': subnet['tenant_id'],
+               'project_id': subnet['project_id'],
                'network_id': subnet['network_id'],
                'ip_version': subnet['ip_version'],
                'subnetpool_id': subnet['subnetpool_id'],

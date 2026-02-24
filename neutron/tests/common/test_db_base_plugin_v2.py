@@ -7165,7 +7165,7 @@ class DbModelTenantTestCase(DbModelMixin, testlib_api.SqlTestCase):
         with db_api.CONTEXT_WRITER.using(ctx):
             subnet = models_v2.Subnet(name="subsub",
                                       ip_version=constants.IP_VERSION_4,
-                                      tenant_id='dbcheck',
+                                      project_id='dbcheck',
                                       cidr='turn_down_for_what',
                                       network_id=network_id)
             ctx.session.add(subnet)

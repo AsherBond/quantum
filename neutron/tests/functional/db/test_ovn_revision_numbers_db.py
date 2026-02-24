@@ -77,7 +77,7 @@ class TestRevisionNumbers(base.TestOVNFunctionalBase):
 
     def _create_subnet(self, net_id, cidr, name='subnet1'):
         data = {'subnet': {'name': name,
-                           'tenant_id': self._project_id,
+                           'project_id': self._project_id,
                            'network_id': net_id,
                            'cidr': cidr,
                            'ip_version': 4,

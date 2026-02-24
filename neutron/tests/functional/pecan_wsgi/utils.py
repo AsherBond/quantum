@@ -32,7 +32,7 @@ def create_subnet(context, plugin, network_id):
     return plugin.create_subnet(
         context,
         {'subnet':
-         {'tenant_id': 'projid',
+         {'project_id': 'projid',
           'network_id': network_id,
           'name': 'pecansub',
           'ip_version': constants.IP_VERSION_4,
