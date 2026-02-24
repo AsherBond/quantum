@@ -62,7 +62,7 @@ repos:
     rev: 8.0.0
     hooks:
       - id: hacking
-        additional_dependencies: ['neutron-lib>=3.23.0']
+        additional_dependencies: ['neutron-lib>=3.24.0']
         exclude: '^(doc|releasenotes|tools)/.*$'
   - repo: https://github.com/sphinx-contrib/sphinx-lint
     rev: v1.0.2
