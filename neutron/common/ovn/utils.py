@@ -1339,7 +1339,7 @@ def sync_ha_chassis_group_network_unified(context, nb_idl, sb_idl, network_id,
 
         if missing_mappings:
             LOG.warning('The following chassis do not have mapped the '
-                        f'physical network {physnet}: {missing_mappings}')
+                        'physical network %s: %s', physnet, missing_mappings)
 
     chassis_list = [sb_idl.lookup('Chassis', ch_name, None)
                     for ch_name in chassis_prio.keys()]
@@ -1501,7 +1501,7 @@ def ovs_persist_uuid_supported(nb_idl):
     if _OVS_PERSIST_UUID is _SENTINEL:
         _OVS_PERSIST_UUID = isinstance(
             next(iter(nb_idl.tables["NB_Global"].rows.data.values())), list)
-        LOG.debug(f"OVS persist_uuid supported={_OVS_PERSIST_UUID}")
+        LOG.debug("OVS persist_uuid supported=%s", _OVS_PERSIST_UUID)
     return _OVS_PERSIST_UUID
 
 

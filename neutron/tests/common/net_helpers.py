@@ -440,9 +440,9 @@ class Pinger:
                 self.received = int(result.group('recv'))
                 break
         else:
-            LOG.error(f"Didn't find ping statistics:\n{output}")
+            LOG.error("Did not find ping statistics:\n%s", output)
             raise RuntimeError("Didn't find ping statistics.")
-        LOG.debug(f"ping command output:\n{output}")
+        LOG.debug("ping command output:\n%s", output)
 
     def start(self):
         if self.proc and self.proc.is_running:

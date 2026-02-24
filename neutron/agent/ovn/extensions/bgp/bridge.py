@@ -177,8 +177,8 @@ class BGPChassisBridge(Bridge):
         # The resulting openflows rules that will be written to a temporary
         # file and applied to the bridge.
         if not self.check_requirements_for_flows_met():
-            LOG.error(f"Some of the requirements to install flows on bridge "
-                      f"{self.name} are missing, skipping")
+            LOG.error("Some of the requirements to install flows on bridge "
+                      "%s are missing, skipping", self.name)
             return
 
         LOG.debug("Configuring BGP bridge flows for %s", self.name)

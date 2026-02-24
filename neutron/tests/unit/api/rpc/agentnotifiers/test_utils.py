@@ -37,7 +37,7 @@ class TestRPCNotifierHandler(test_base.BaseTestCase):
         handler.notifier_instance = _RPCNotifier()
         self.assertIsNone(handler.method_2(1, arg2=2))
         mock_log.warning.assert_called_once_with(
-            'Method method_2 is not implemented in the RPC notifier.')
+            'Method %s is not implemented in the RPC notifier.', 'method_2')
 
     def test_call_no_rpc_instance(self):
         handler = notifier_utils.RPCNotifierHandler()

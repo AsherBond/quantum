@@ -274,13 +274,13 @@ class Host(fixtures.Fixture):
             self.tunnel_device.addr.flush(4)
         else:
             self.br_phys.delete_port(self.internal_port)
-        LOG.info(f'Host {self.hostname} disconnected.')
+        LOG.info('Host %s disconnected.', self.hostname)
 
     def kill(self, parent=None):
         # First kill all the agent to prevent a graceful shutdown
         for agent_name, agent in self.agents.items():
             agent.stop(kill_signal=signal.SIGKILL)
-        LOG.info(f'Agents on host {self.hostname} killed.')
+        LOG.info('Agents on host %s killed.', self.hostname)
 
         self.shutdown(parent)
 
@@ -293,7 +293,7 @@ class Host(fixtures.Fixture):
                 (self.cleanUp, (), {})
             )
 
-        LOG.info(f'Host {self.hostname} shut down.')
+        LOG.info('Host %s shut down.', self.hostname)
 
     @property
     def hostname(self):
