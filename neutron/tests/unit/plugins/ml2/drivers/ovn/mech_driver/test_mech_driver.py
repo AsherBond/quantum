@@ -164,7 +164,7 @@ class TestOVNMechanismDriverBase(MechDriverSetupBase,
         cfg.CONF.set_override('extension_drivers',
                               self._extension_drivers,
                               group='ml2')
-        cfg.CONF.set_override('tenant_network_types',
+        cfg.CONF.set_override('project_network_types',
                               ['geneve'],
                               group='ml2')
         cfg.CONF.set_override('vni_ranges',
@@ -3493,7 +3493,7 @@ class OVNMechanismDriverTestCase(MechDriverSetupBase,
         if enable_metadata:
             ovn_conf.cfg.CONF.set_override('ovn_metadata_enabled', True,
                                            group='ovn')
-        cfg.CONF.set_override('tenant_network_types',
+        cfg.CONF.set_override('project_network_types',
                               ['geneve'],
                               group='ml2')
         cfg.CONF.set_override('vni_ranges',

@@ -70,7 +70,7 @@ Controller node
 
         [ml2]
         type_drivers = flat,vlan,vxlan
-        tenant_network_types = vxlan
+        project_network_types = vxlan
 
    * Enable the layer-2 population mechanism driver.
 

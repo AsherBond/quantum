@@ -1487,7 +1487,7 @@ def validate_port_forwarding_configuration():
 
     provider_network_types = ['vlan', 'flat']
     if any(net_type in provider_network_types
-           for net_type in cfg.CONF.ml2.tenant_network_types):
+           for net_type in cfg.CONF.ml2.project_network_types):
         raise ovn_exc.InvalidPortForwardingConfiguration()
 
 

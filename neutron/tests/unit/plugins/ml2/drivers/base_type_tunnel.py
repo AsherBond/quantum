@@ -207,7 +207,7 @@ class TunnelTypeTestMixin:
             segment[api.SEGMENTATION_ID] = tunnel_id
             self.driver.release_segment(self.context, segment)
 
-    def test_allocate_tenant_segment(self):
+    def test_allocate_project_segment(self):
         tunnel_ids = set()
         for x in range(TUN_MIN, TUN_MAX + 1):
             segment = self.driver.allocate_tenant_segment(self.context)

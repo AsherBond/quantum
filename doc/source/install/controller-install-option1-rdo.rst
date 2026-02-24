@@ -171,7 +171,7 @@ and switching) virtual networking infrastructure for instances.
 
        [ml2]
        # ...
-       tenant_network_types =
+       project_network_types =
 
     .. end
 

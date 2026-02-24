@@ -58,7 +58,7 @@ class TypeManager(stevedore.named.NamedExtensionManager):
                          invoke_on_load=True)
         LOG.info("Loaded type driver names: %s", self.names())
         self._register_types()
-        self._check_tenant_network_types(cfg.CONF.ml2.tenant_network_types)
+        self._check_project_network_types(cfg.CONF.ml2.project_network_types)
         self._check_external_network_type(cfg.CONF.ml2.external_network_type)
 
     def _register_types(self):
@@ -75,15 +75,15 @@ class TypeManager(stevedore.named.NamedExtensionManager):
                 self.drivers[network_type] = ext
         LOG.info("Registered types: %s", self.drivers.keys())
 
-    def _check_tenant_network_types(self, types):
-        self.tenant_network_types = []
+    def _check_project_network_types(self, types):
+        self.project_network_types = []
         for network_type in types:
             if network_type not in self.drivers:
-                LOG.error("No type driver for tenant network_type: %s. "
+                LOG.error("No type driver for project network_type: %s. "
                           "Service terminated!", network_type)
                 raise SystemExit(1)
-            self.tenant_network_types.append(network_type)
-        LOG.info("Tenant network_types: %s", self.tenant_network_types)
+            self.project_network_types.append(network_type)
+        LOG.info("Project network_types: %s", self.project_network_types)
 
     def _check_external_network_type(self, ext_network_type):
         if ext_network_type and ext_network_type not in self.drivers:
@@ -208,10 +208,10 @@ class TypeManager(stevedore.named.NamedExtensionManager):
         segments_db.update_network_segment(
             context, network_id, segmentation_id)
 
-    def create_network_segments(self, context, network, tenant_id):
+    def create_network_segments(self, context, network, project_id):
         """Call type drivers to create network segments."""
         segments = self._process_provider_create(network)
-        filters = {'project_id': tenant_id}
+        filters = {'project_id': project_id}
         with db_api.CONTEXT_WRITER.using(context):
             network_id = network['id']
             if segments:
@@ -226,7 +226,7 @@ class TypeManager(stevedore.named.NamedExtensionManager):
                     context, filters=filters)
                 self._add_network_segment(context, network_id, segment)
             else:
-                segment = self._allocate_tenant_net_segment(
+                segment = self._allocate_project_net_segment(
                     context, filters=filters)
                 self._add_network_segment(context, network_id, segment)
 
@@ -302,11 +302,12 @@ class TypeManager(stevedore.named.NamedExtensionManager):
     def _allocate_segment(self, context, network_type, filters=None):
         driver = self.drivers.get(network_type)
         if isinstance(driver.obj, api.TypeDriver):
-            return driver.obj.allocate_tenant_segment(context.session, filters)
+            return driver.obj.allocate_tenant_segment(context.session,
+                                                       filters)
         return driver.obj.allocate_tenant_segment(context, filters)
 
-    def _allocate_tenant_net_segment(self, context, filters=None):
-        for network_type in self.tenant_network_types:
+    def _allocate_project_net_segment(self, context, filters=None):
+        for network_type in self.project_network_types:
             segment = self._allocate_segment(context, network_type, filters)
             if segment:
                 return segment

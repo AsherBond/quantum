@@ -110,7 +110,7 @@ class FlatTypeDriver(helpers.BaseTypeDriver):
         return segment
 
     def allocate_tenant_segment(self, context, filters=None):
-        # Tenant flat networks are not supported.
+        # Project flat networks are not supported.
         return
 
     def release_segment(self, context, segment):

@@ -283,7 +283,7 @@ class VlanTypeTest(testlib_api.SqlTestCase):
         self.driver.physnet_mtus = {}
         self.assertEqual(0, self.driver.get_mtu('physnet1'))
 
-    def test_allocate_tenant_segment(self):
+    def test_allocate_project_segment(self):
         cfg.CONF.set_override('network_vlan_ranges', TENANT_VLAN_RANGES,
                               group='ml2_type_vlan')
         driver = type_vlan.VlanTypeDriver()
@@ -297,7 +297,7 @@ class VlanTypeTest(testlib_api.SqlTestCase):
             self.assertLess(vlan_id, VLAN_MAX + 1)
             self.assertEqual(TENANT_NET, segment[api.PHYSICAL_NETWORK])
 
-    def test_allocate_tenant_segment_no_available(self):
+    def test_allocate_project_segment_no_available(self):
         cfg.CONF.set_override('network_vlan_ranges', TENANT_VLAN_RANGES,
                               group='ml2_type_vlan')
         driver = type_vlan.VlanTypeDriver()
@@ -326,7 +326,7 @@ class VlanTypeTest(testlib_api.SqlTestCase):
 
 class VlanTypeAllocationTest(testlib_api.SqlTestCase):
 
-    def test_allocate_tenant_segment_in_order_of_config(self):
+    def test_allocate_project_segment_in_order_of_config(self):
         ranges = NETWORK_VLAN_RANGES + ['phys_net3:20:30']
         cfg.CONF.set_override('network_vlan_ranges',
                               ranges,

@@ -85,7 +85,7 @@ Controller node configuration
 
       [ml2]
       type_drivers = flat,vxlan
-      tenant_network_types = vxlan
+      project_network_types = vxlan
       mechanism_drivers = openvswitch,l2population
       extension_drivers = port_security
 
@@ -100,7 +100,7 @@ Controller node configuration
 
    .. note::
 
-      The first value in the ``tenant_network_types`` option becomes the
+      The first value in the ``project_network_types`` option becomes the
       default project network type when a regular user creates a network.
 
 Network nodes
